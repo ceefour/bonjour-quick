@@ -19,3 +19,10 @@ build
 /json
 /image-store
 /parent
+
+*.class
+
+# Package Files #
+*.jar
+*.war
+*.ear
