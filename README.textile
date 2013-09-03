@@ -1,0 +1,69 @@
+h1. Bonjour-Quick
+
+Simple Bonjour/ZeroConf/Avahi/mDNS service discovery + link-local/serverless XMPP (XEP-0174) demonstration that has two behaviors:
+
+1. Connect serverless XMPP via Bonjour discovery, sends a chat message
+   to predefined bonjour buddy, then disconnects and exits
+   
+2. Connect serverless XMPP via Bonjour discovery, waits a chat message
+   from any bonjour buddy, sends an echo reply back, then disconnects and exits
+
+h2. References
+
+1. http://issues.igniterealtime.org/browse/SMACK-262
+2. http://community.igniterealtime.org/message/185170
+3. http://community.igniterealtime.org/message/142049
+4. http://community.igniterealtime.org/thread/44462
+5. "Current state of aSmack (Smack for Android)":http://community.igniterealtime.org/message/226881
+6. "Quick Tutorial on Using JmDNS on Android":http://home.heeere.com/tech-androidjmdns.html
+7. "kohsuke's JmDNS":https://github.com/jenkinsci/jmdns
+8. "asmack by Flowdalic":https://github.com/flowdalic/asmack
+9. "twitwi/AndroidDnssdDemo":https://github.com/twitwi/AndroidDnssdDemo
+
+h2. Java Bonjour Library
+
+1. "Apple DNS-SD":http://developer.apple.com/networking/bonjour/index.html
+2. "waiter":http://code.google.com/p/waiter/
+3. "JmDNS":http://jmdns.sourceforge.net/ (defunct but working?)
+
+h2. avahi-browse
+
+Example avahi-browse output. The "iChat Presence" (aka @_presence._tcp@) is most interesting.
+
+bc. > avahi-browse -a -r 
++   usb0 IPv6 amanah [0e:2f:8e:a8:c6:7b]                    Workstation          local
++   usb0 IPv4 amanah [0e:2f:8e:a8:c6:7b]                    Workstation          local
++   usb0 IPv6 amanah                                        Remote Disk Management local
++   usb0 IPv4 amanah                                        Remote Disk Management local
++   usb0 IPv6 Hendy PC@amanah                               iChat Presence       local
++   usb0 IPv4 Hendy PC@amanah                               iChat Presence       local
+=   usb0 IPv6 amanah [0e:2f:8e:a8:c6:7b]                    Workstation          local
+   hostname = [amanah.local]
+   address = [fe80::c2f:8eff:fea8:c67b]
+   port = [9]
+   txt = []
+=   usb0 IPv4 amanah [0e:2f:8e:a8:c6:7b]                    Workstation          local
+   hostname = [amanah.local]
+   address = [192.168.42.143]
+   port = [9]
+   txt = []
+=   usb0 IPv6 amanah                                        Remote Disk Management local
+   hostname = [amanah.local]
+   address = [fe80::c2f:8eff:fea8:c67b]
+   port = [22]
+   txt = []
+=   usb0 IPv4 amanah                                        Remote Disk Management local
+   hostname = [amanah.local]
+   address = [192.168.42.143]
+   port = [22]
+   txt = []
+=   usb0 IPv6 Hendy PC@amanah                               iChat Presence       local
+   hostname = [amanah.local]
+   address = [fe80::c2f:8eff:fea8:c67b]
+   port = [5298]
+   txt = ["txtvers=1" "1st=Adrianto" "last=Mahendra Wijaya" "port.p2pj=5298" "status=avail" "node=libpurple" "ver=2.10.7" "vc=!"]
+=   usb0 IPv4 Hendy PC@amanah                               iChat Presence       local
+   hostname = [amanah.local]
+   address = [192.168.42.143]
+   port = [5298]
+   txt = ["txtvers=1" "1st=Adrianto" "last=Mahendra Wijaya" "port.p2pj=5298" "status=avail" "node=libpurple" "ver=2.10.7" "vc=!"]
