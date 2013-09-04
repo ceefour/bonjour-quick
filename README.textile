@@ -67,3 +67,17 @@ bc. > avahi-browse -a -r
    address = [192.168.42.143]
    port = [5298]
    txt = ["txtvers=1" "1st=Adrianto" "last=Mahendra Wijaya" "port.p2pj=5298" "status=avail" "node=libpurple" "ver=2.10.7" "vc=!"]
+
+Pidgin immediately closes my XML stream connection attempt. I thought this was because I can't chat from the same host, but using Pidgin
+it's possible to have two Bonjour accounts in the same host and talk between them.
+
+bc. > nc -v localhost 5298
+Connection to localhost 5298 port [tcp/*] succeeded!
+
+Maybe Pidgin does a 5353 mDNS check on the PTR?
+But it's a bit weird, as one cannot initiate a TCP connection from an already-listening port,
+so a PTR check doesn't make sense.
+
+Now I know why Pidgin/Bonjour isn't "stable" and misses messages a lot: due to IPv6.
+Sometimes Bonjour IPv4 service isn't registered, only IPv6, so Pidgin tries to send
+messages using the IPv6 address and the packet is lost.
